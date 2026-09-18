@@ -8,6 +8,7 @@ services:
 
   bsv-node:
     image: ghcr.io/deepdance1977/bsv-full-node-arm64:latest
+    pull_policy: always
     restart: on-failure
     stop_grace_period: 5m
     environment:
