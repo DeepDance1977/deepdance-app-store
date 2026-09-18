@@ -25,11 +25,13 @@ description: >-
     JWT-Authentifizierung.
 developer: DeepDance
 website: https://github.com/DeepDance1977/bsv-solo-mining-dashboard
-# Haengt vom BSV Full-Node-Paket ab, nicht von der offiziellen "bitcoin"-App
-# (Bitcoin Core / BTC). Passe die App-ID an, falls dein Store einen anderen
-# Bezeichner fuer den BSV-Node fuehrt.
-dependencies:
-  - deepdance-bitcoin-sv
+# HINWEIS: Die Abhaengigkeit zur Node-App (deepdance-bitcoin-sv) ist
+# vorerst entfernt, bis deren Docker-Image fertig gebaut ist. Die
+# Dashboard-App laesst sich so unabhaengig installieren und zeigt bis
+# dahin einfach "Node nicht erreichbar" an. Nach dem Node-Build wieder
+# einkommentieren:
+# dependencies:
+#   - deepdance-bitcoin-sv
 repo: https://github.com/DeepDance1977/bsv-solo-mining-dashboard
 support: https://github.com/DeepDance1977/bsv-solo-mining-dashboard/issues
 port: 3000
