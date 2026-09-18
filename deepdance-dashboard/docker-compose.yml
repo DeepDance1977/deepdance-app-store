@@ -3,7 +3,7 @@ version: "3.9"
 services:
   app_proxy:
     environment:
-      APP_HOST: deepdance-dashboard_frontend_1
+      APP_HOST: 5tratumos-deepdance-dashboard-frontend-1
       APP_PORT: 80
 
   postgres:
@@ -44,3 +44,4 @@ services:
     stop_grace_period: 1m
     depends_on:
       - backend
+
