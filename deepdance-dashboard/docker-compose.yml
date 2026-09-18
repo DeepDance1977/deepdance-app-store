@@ -19,6 +19,7 @@ services:
 
   backend:
     image: ghcr.io/deepdance1977/bsv-solo-mining-dashboard-backend:latest
+    pull_policy: always
     restart: on-failure
     stop_grace_period: 1m
     depends_on:
@@ -38,6 +39,7 @@ services:
 
   frontend:
     image: ghcr.io/deepdance1977/bsv-solo-mining-dashboard-frontend:latest
+    pull_policy: always
     restart: on-failure
     stop_grace_period: 1m
     depends_on:
