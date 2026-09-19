@@ -17,6 +17,28 @@ version: "3.9"
 # das direkte Portmapping.
 
 services:
+  # WICHTIG: "frontend" muss als ERSTER echter Service in dieser Datei
+  # stehen. 5tratumOS ordnet den in umbrel-app.yml deklarierten Port
+  # (hier: 3000) automatisch dem ERSTEN Service in der Datei zu, unabhaengig
+  # vom Namen - als "<port>:80". Deshalb steht frontend hier vorne, obwohl
+  # es inhaltlich von backend/postgres abhaengt (das ist fuer Docker Compose
+  # kein Problem, "depends_on" regelt die Startreihenfolge unabhaengig von
+  # der Position in der Datei).
+  frontend:
+    image: ghcr.io/deepdance1977/bsv-solo-mining-dashboard-frontend:latest
+    pull_policy: always
+    restart: on-failure
+    stop_grace_period: 1m
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
   app_proxy:
     environment:
       APP_HOST: deepdance-dashboard_frontend_1
@@ -64,22 +86,3 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
-
-  frontend:
-    image: ghcr.io/deepdance1977/bsv-solo-mining-dashboard-frontend:latest
-    pull_policy: always
-    restart: on-failure
-    stop_grace_period: 1m
-    depends_on:
-      backend:
-        condition: service_healthy
-    # Nur fuer 5tratumOS relevant (kein app_proxy vorhanden). Der Port muss
-    # zum "port"-Feld in umbrel-app.yml passen (hier: 3000).
-    ports:
-      - "3000:80"
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
