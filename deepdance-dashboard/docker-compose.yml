@@ -1,9 +1,25 @@
 version: "3.9"
 
+# Diese docker-compose.yml ist bewusst kompatibel mit ZWEI Plattformen:
+#
+# 1) Klassisches Umbrel (und Umbrel-treue Forks): nutzt den zentralen
+#    "app_proxy"-Reverse-Proxy-Container, der ueber APP_HOST/APP_PORT
+#    automatisch mit dem Frontend-Container verbunden wird.
+#
+# 2) 5tratumOS: hat KEINEN zentralen app_proxy-Mechanismus. Jede App
+#    veroeffentlicht ihren Port stattdessen direkt am Host (wie z.B. die
+#    mitgelieferten Apps axebch, hashwatcher etc.). Deshalb zusaetzlich
+#    ein explizites "ports:"-Mapping am Frontend-Service.
+#
+# Beide Eintraege koennen gefahrlos nebeneinander stehen: Umbrel nutzt den
+# app_proxy und ignoriert das zusaetzliche Portmapping (nur intern relevant),
+# 5tratumOS ignoriert den unbekannten app_proxy-Service und nutzt einfach
+# das direkte Portmapping.
+
 services:
   app_proxy:
     environment:
-      APP_HOST: 5tratumos-deepdance-dashboard-frontend-1
+      APP_HOST: deepdance-dashboard_frontend_1
       APP_PORT: 80
 
   postgres:
@@ -57,6 +73,10 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    # Nur fuer 5tratumOS relevant (kein app_proxy vorhanden). Der Port muss
+    # zum "port"-Feld in umbrel-app.yml passen (hier: 3000).
+    ports:
+      - "3000:80"
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
       interval: 10s
