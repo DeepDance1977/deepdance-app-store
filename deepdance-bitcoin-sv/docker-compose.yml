@@ -1,9 +1,12 @@
 version: "3.9"
 
+# Kompatibel mit Umbrel (app_proxy) UND 5tratumOS (direktes Portmapping).
+# Siehe ausfuehrlichen Kommentar in deepdance-dashboard/docker-compose.yml.
+
 services:
   app_proxy:
     environment:
-      APP_HOST: 5tratumos-deepdance-bitcoin-sv-bsv-node-1
+      APP_HOST: deepdance-bitcoin-sv_bsv-node_1
       APP_PORT: 8332
 
   bsv-node:
@@ -18,5 +21,6 @@ services:
       NETWORK: mainnet
     ports:
       - "8333:8333"
+      - "8332:8332"
     volumes:
       - ${APP_DATA_DIR}/data:/data
