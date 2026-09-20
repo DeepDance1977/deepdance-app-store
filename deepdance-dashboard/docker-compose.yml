@@ -72,7 +72,13 @@ services:
       DATABASE_URL: postgresql+psycopg2://bsvdash:$APP_PASSWORD@postgres:5432/bsvdash
       SECRET_KEY: $APP_SEED
       BOOTSTRAP_ADMIN_USERNAME: admin
-      BOOTSTRAP_ADMIN_PASSWORD: $APP_PASSWORD
+      # Bewusst FEST (nicht $APP_PASSWORD): das Backend erzwingt beim ersten
+      # Login ohnehin eine Passwortaenderung (siehe must_change_password).
+      # Das macht den Login unabhaengig davon, ob/wie eine Plattform eigene
+      # Zufallspasswoerter einspeist bzw. bei Neuinstallationen synchron
+      # haelt - das war die Ursache mehrerer Login-Probleme waehrend des
+      # Testens.
+      BOOTSTRAP_ADMIN_PASSWORD: changeme123
       BSV_RPC_HOST: $APP_BITCOIN_NODE_IP
       BSV_RPC_PORT: $APP_BITCOIN_RPC_PORT
       BSV_RPC_USER: $APP_BITCOIN_RPC_USER
