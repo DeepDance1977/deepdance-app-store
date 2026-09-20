@@ -23,6 +23,10 @@ description: >-
     Bloecken und Node-Fehlern.
   - Benutzerverwaltung mit Rollenmodell (Admin/Operator/Betrachter) und
     JWT-Authentifizierung.
+
+  Erstanmeldung: Benutzername "admin", Passwort "changeme123". Du wirst
+  beim ersten Login automatisch aufgefordert, ein eigenes Passwort zu
+  vergeben.
 developer: DeepDance
 website: https://github.com/DeepDance1977/bsv-solo-mining-dashboard
 # HINWEIS: Die Abhaengigkeit zur Node-App (deepdance-bitcoin-sv) ist
@@ -41,7 +45,7 @@ gallery:
   - 3.jpg
 path: ""
 defaultUsername: "admin"
-defaultPassword: "$APP_PASSWORD"
+defaultPassword: "changeme123"
 submitter: DeepDance
 submission: https://github.com/DeepDance1977/bsv-solo-mining-dashboard
 releaseNotes: >-
