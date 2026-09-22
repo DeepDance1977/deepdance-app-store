@@ -16,7 +16,12 @@ services:
     stop_grace_period: 5m
     environment:
       RPC_USER: deepdance
-      RPC_PASSWORD: $APP_PASSWORD
+      # Bewusst FEST (nicht $APP_PASSWORD): 5tratumOS teilt Zugangsdaten
+      # nicht automatisch zwischen getrennten Apps. Damit das Dashboard die
+      # Node ohne manuelle Konfiguration findet, nutzen beide Apps dasselbe
+      # dokumentierte RPC-Passwort. Die RPC-Schnittstelle ist ohnehin nur
+      # im lokalen Netzwerk erreichbar (kein Port-Forwarding ins Internet).
+      RPC_PASSWORD: deepdance-bsv-rpc-2026
       RPC_ALLOW_IP: 172.16.0.0/12
       NETWORK: mainnet
     ports:
