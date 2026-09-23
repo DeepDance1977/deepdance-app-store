@@ -24,6 +24,10 @@ services:
       RPC_PASSWORD: deepdance-bsv-rpc-2026
       RPC_ALLOW_IP: 172.16.0.0/12
       NETWORK: mainnet
+      # Pruned Mode: Zielgroesse fuer die auf der Platte gehaltenen
+      # Blockdaten in MiB. 5000 = ca. 5 GB. Erhoehen, falls mehr Speicher
+      # verfuegbar ist und mehr Historie gewuenscht wird.
+      PRUNE_SIZE_MB: 5000
     ports:
       - "8333:8333"
       - "8332:8332"
