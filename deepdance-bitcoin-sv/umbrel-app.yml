@@ -12,7 +12,9 @@ description: >-
 
   Enthaelt Wallet-Unterstuetzung (fuer Empfangsadresse, Guthaben und
   Mining-Belohnungen im BSV Solo Mining Dashboard), ZMQ-Benachrichtigungen
-  fuer neue Bloecke sowie txindex fuer volle RPC-Kompatibilitaet.
+  fuer neue Bloecke. Laeuft standardmaessig im "Pruned Mode" (ca. 5 GB
+  Speicherbedarf statt mehrerer hundert GB fuer die volle Blockchain) -
+  ueber die Umgebungsvariable PRUNE_SIZE_MB einstellbar.
 
   Empfehlung: externe SSD statt microSD-Karte fuer die Blockchain-Daten.
 developer: DeepDance
