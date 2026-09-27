@@ -1,0 +1,42 @@
+version: "3.9"
+
+# Kompatibel mit Umbrel (app_proxy) UND 5tratumOS (direktes Portmapping).
+# "frontend" steht bewusst als ERSTER Service (5tratumOS ordnet den in
+# umbrel-app.yml deklarierten Port automatisch dem ersten Service zu).
+#
+# ANNAHME/TODO: DeepBSV's "api"-Dienst zeigte in der urspruenglichen
+# docker-compose.yml keine erkennbaren Umgebungsvariablen fuer die
+# Verbindung zur BSV-Node. Hier werden testweise dieselben Variablen wie
+# beim Dashboard gesetzt (gleiches festes RPC-Passwort wie
+# deepdance-bitcoin-sv) - falls DeepBSV intern andere Variablennamen
+# erwartet, bitte im Quellcode (z.B. src/deepbsv/config.py oder
+# aehnlich) nachsehen und hier entsprechend anpassen.
+
+services:
+  frontend:
+    image: ghcr.io/deepdance1977/deepbsv-frontend:latest
+    pull_policy: always
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  app_proxy:
+    environment:
+      APP_HOST: deepdance-deepbsv_frontend_1
+      APP_PORT: 80
+
+  api:
+    image: ghcr.io/deepdance1977/deepbsv-api:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      PYTHONUNBUFFERED: "1"
+      BSV_RPC_HOST: host.docker.internal
+      BSV_RPC_PORT: 8332
+      BSV_RPC_USER: deepdance
+      BSV_RPC_PASSWORD: deepdance-bsv-rpc-2026
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+      - "3333:3333"
