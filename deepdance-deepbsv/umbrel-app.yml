@@ -25,5 +25,5 @@ defaultPassword: ""
 submitter: DeepDance
 submission: https://github.com/DeepDance1977/DeepBSV
 releaseNotes: >-
-  Version 1.0.1: Neues Web-Frontend mit integriertem Reverse-Proxy und
-  verbessertem Zugriff auf API und WebSocket.
+  Version 1.0.1: Weboberflaeche und App-Proxy wurden fuer 5tratumOS
+  verbessert.
