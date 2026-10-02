@@ -18,6 +18,13 @@ services:
     image: ghcr.io/deepdance1977/deepbsv-api:latest
     restart: on-failure
     stop_grace_period: 1m
+    environment:
+      PYTHONUNBUFFERED: "1"
+      BSV_RPC_HOST: host.docker.internal
+      BSV_RPC_PORT: 8332
+      BSV_RPC_USER: deepdance
+      BSV_RPC_PASSWORD: deepdance-bsv-rpc-2026
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
-      - "8000:8000"
       - "3333:3333"
