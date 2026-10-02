@@ -2,16 +2,14 @@ manifestVersion: 1
 id: deepdance-deepbsv
 category: bitcoin
 name: DeepBSV Solo Mining Engine
-version: "1.0.0"
+version: "1.0.1"
 tagline: Eigenstaendige Stratum-V1 Solo-Mining-Engine fuer Bitcoin SV
 description: >-
   DeepBSV ist eine eigenstaendige Solo-Mining-Plattform fuer Bitcoin SV: ein
   entkoppelter, asynchroner Mining-Pfad zwischen BSV-Node, Mining-Engine und
   angeschlossenen ASIC-Minern ueber das Stratum-V1-Protokoll.
-
   Verbinde deinen ASIC-Miner direkt mit dieser App (Port 3333), um solo auf
   Bitcoin SV zu minen - ganz ohne zusaetzliche Drittprogramme.
-
   HINWEIS: Benoetigt eine laufende Bitcoin-SV-Node (z.B. "Bitcoin SV Full
   Node (DeepDance)") im selben Netzwerk.
 developer: DeepDance
@@ -27,4 +25,5 @@ defaultPassword: ""
 submitter: DeepDance
 submission: https://github.com/DeepDance1977/DeepBSV
 releaseNotes: >-
-  Erstveroeffentlichung.
+  Version 1.0.1: Neues Web-Frontend mit integriertem Reverse-Proxy und
+  verbessertem Zugriff auf API und WebSocket.
