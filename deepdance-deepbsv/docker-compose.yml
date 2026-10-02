@@ -1,21 +1,33 @@
-version: "3.7"
+version: "3.9"
+
+# Kompatibel mit Umbrel (app_proxy) UND 5tratumOS.
+#
+# 5tratumOS verwendet den ERSTEN echten Service als Web-Service
+# und ordnet den Port aus umbrel-app.yml diesem Service zu.
+#
+# Deshalb steht "frontend" bewusst vor "app_proxy" und "api".
+#
+# Das Frontend läuft intern über Nginx auf Port 80.
+# In umbrel-app.yml wird dafür der externe App-Port 3000 verwendet.
 
 services:
+
+  frontend:
+    image: ghcr.io/deepdance1977/deepbsv-frontend:latest
+    pull_policy: always
+    restart: on-failure
+    stop_grace_period: 1m
+    depends_on:
+      - api
 
   app_proxy:
     environment:
       APP_HOST: deepdance-deepbsv_frontend_1
       APP_PORT: 80
 
-  frontend:
-    image: ghcr.io/deepdance1977/deepbsv-frontend:latest
-    restart: on-failure
-    stop_grace_period: 1m
-    depends_on:
-      - api
-
   api:
     image: ghcr.io/deepdance1977/deepbsv-api:latest
+    pull_policy: always
     restart: on-failure
     stop_grace_period: 1m
     environment:
@@ -27,4 +39,5 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
+      - "8000:8000"
       - "3333:3333"
