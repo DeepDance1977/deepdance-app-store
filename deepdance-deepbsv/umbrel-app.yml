@@ -2,7 +2,7 @@ manifestVersion: 1
 id: deepdance-deepbsv
 category: bitcoin
 name: DeepBSV Solo Mining Engine
-version: "1.0.1"
+version: "1.0.2"
 tagline: Eigenstaendige Stratum-V1 Solo-Mining-Engine fuer Bitcoin SV
 description: >-
   DeepBSV ist eine eigenstaendige Solo-Mining-Plattform fuer Bitcoin SV: ein
@@ -16,7 +16,7 @@ developer: DeepDance
 website: https://github.com/DeepDance1977/DeepBSV
 repo: https://github.com/DeepDance1977/DeepBSV
 support: https://github.com/DeepDance1977/DeepBSV/issues
-port: 80
+port: 3000
 gallery:
   - 1.jpg
 path: ""
@@ -25,5 +25,5 @@ defaultPassword: ""
 submitter: DeepDance
 submission: https://github.com/DeepDance1977/DeepBSV
 releaseNotes: >-
-  Version 1.0.1: Weboberflaeche und App-Proxy wurden fuer 5tratumOS
-  verbessert.
+  Version 1.0.2: Web-Frontend fuer 5tratumOS angepasst und
+  App-Port-Konfiguration an das DeepDance-Dashboard angeglichen.
